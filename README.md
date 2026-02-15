@@ -14,11 +14,15 @@ A threat hunting case study documenting the detection of unauthorized TOR browse
 
 ## Table of Contents
 
-...
+- [Part 1: Plan to Find Indicators of Compromise (IoC)](#part-1-plan-to-find-indicators-of-compromise-ioc)
+- [Part 2: Scenario](#part-2-scenario)
+- [Part 3: Steps Taken](#part-3-steps-taken)
+- [Part 4: Results (Chronological Event Timeline)](#part-4-results-chronological-event-timeline)
+- [Part 5: Action Taken](#part-5-action-taken)
 
 ---
 
-### Part 0: Plan to Find Indicators of Compromise (IoC)
+### Part 1: Plan to Find Indicators of Compromise (IoC)
 
 - **Check `DeviceFileEvents`** for any `tor(.exe)` or `firefox(.exe)` file events.
 - **Check `DeviceProcessEvents`** for any signs of installation or usage.
@@ -26,13 +30,13 @@ A threat hunting case study documenting the detection of unauthorized TOR browse
 
 ---
 
-### Part 1: Scenario
+### Part 2: Scenario
 
 Management suspects that some employees may be using TOR browsers to bypass network security controls because recent network logs show unusual encrypted traffic patterns and connections to known TOR entry nodes. Additionally, there have been anonymous reports of employees discussing ways to access restricted sites during work hours. The goal is to detect any TOR usage and analyze related security incidents to mitigate potential risks. If any use of TOR is found, notify management.
 
 ---
 
-### Part 2: Steps Taken
+### Part 3: Steps Taken
 
 #### Step 1: Searched the 'DeviceFileEvents' Table
 
@@ -94,7 +98,7 @@ DeviceNetworkEvents
 | order by Timestamp desc
 ```
 
-### Part 3: Results (Chronological Event Timeline)
+### Part 4: Results (Chronological Event Timeline)
 
 #### 1. File Download - TOR Installer
 
@@ -143,7 +147,7 @@ DeviceNetworkEvents
 
 ---
 
-### Part 4: Action Taken
+### Part 5: Action Taken
 
 The user "employee" on the "threat-hunt-lab" device initiated and completed the installation of the TOR browser. They proceeded to launch the browser, establish connections within the TOR network, and created various files related to TOR on their desktop, including a file named `tor-shopping-list.txt`. This sequence of activities indicates that the user actively installed, configured, and used the TOR browser, likely for anonymous browsing purposes, with possible documentation in the form of the "shopping list" file.
 
